@@ -30,9 +30,9 @@ class IndecisionApp extends React.Component {
     return (
       <div>
         <Header title={title} subTitle={subTitle}/>
-        <Action onPick={this.handlePick} hasOptions={this.state.options.length > 0}/>
-        <Options options={this.state.options} onRemoveAll={this.handleRemoveAll}/>
-        <AddOption onAdd={this.handleAdd}/>
+        <Action handlePick={this.handlePick} hasOptions={this.state.options.length > 0}/>
+        <Options options={this.state.options} handleRemoveAll={this.handleRemoveAll}/>
+        <AddOption handleAdd={this.handleAdd}/>
       </div>
     );
   }
@@ -57,7 +57,7 @@ class Action extends React.Component {
   render() {
     return (
       <div>
-        <button disabled={!this.props.hasOptions} onClick={this.props.onPick} type="button">What should I do?</button>
+        <button disabled={!this.props.hasOptions} onClick={this.props.handlePick} type="button">What should I do?</button>
       </div>
     );
   }
@@ -68,7 +68,7 @@ class Options extends React.Component {
     return (
       <div>
         {this.props.options.map((option, index) => <Option key={index} value={option}/>)}
-        <button onClick={this.props.onRemoveAll}>Remove all</button>
+        <button onClick={this.props.handleRemoveAll}>Remove all</button>
       </div>
     );
   }
@@ -91,8 +91,9 @@ class AddOption extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     const option = e.target.elements.option.value.trim();
-    this.props.onAdd(option);
+    this.props.handleAdd(option);
     e.target.elements.option.value = '';
+    e.target.elements.option.focus();
   };
 
   render() {
