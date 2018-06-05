@@ -4,6 +4,7 @@ class IndecisionApp extends React.Component {
     this.state = {options: [11, 2, 3]};
     this.handleAdd = this.handleAdd.bind(this);
     this.handleRemoveAll = this.handleRemoveAll.bind(this);
+    this.handlePick = this.handlePick.bind(this);
   }
 
   handleRemoveAll() {
@@ -18,13 +19,18 @@ class IndecisionApp extends React.Component {
     })
   }
 
+  handlePick() {
+    const randomNum = Math.floor(Math.random() * this.state.options.length);
+    console.log(this.state.options[randomNum]);
+  }
+
   render() {
     const title = 'test';
     const subTitle = 'test2';
     return (
       <div>
         <Header title={title} subTitle={subTitle}/>
-        <Action />
+        <Action onPick={this.handlePick} hasOptions={this.state.options.length > 0}/>
         <Options options={this.state.options} onRemoveAll={this.handleRemoveAll}/>
         <AddOption onAdd={this.handleAdd}/>
       </div>
@@ -44,25 +50,20 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
-
-  handlePick() {
-    console.log(1)
+  constructor(props) {
+    super(props);
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.handlePick} type="button">What should I do?</button>
+        <button disabled={!this.props.hasOptions} onClick={this.props.onPick} type="button">What should I do?</button>
       </div>
     );
   }
 }
 
 class Options extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>
