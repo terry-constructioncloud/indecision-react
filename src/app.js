@@ -1,18 +1,37 @@
 class IndecisionApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {options: [11, 2, 3]};
+    this.handleAdd = this.handleAdd.bind(this);
+    this.handleRemoveAll = this.handleRemoveAll.bind(this);
+  }
+
+  handleRemoveAll() {
+    this.setState(_ => {
+      return {options: []};
+    })
+  }
+
+  handleAdd(option) {
+    this.setState(({options}) => {
+      return {options: options.concat(option)};
+    })
+  }
+
   render() {
     const title = 'test';
     const subTitle = 'test2';
-    const options = [1, 2, 3];
     return (
       <div>
         <Header title={title} subTitle={subTitle}/>
         <Action />
-        <Options options={options}/>
-        <AddOption />
+        <Options options={this.state.options} onRemoveAll={this.handleRemoveAll}/>
+        <AddOption onAdd={this.handleAdd}/>
       </div>
     );
   }
 }
+
 class Header extends React.Component {
   render() {
     return (
@@ -25,6 +44,7 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+
   handlePick() {
     console.log(1)
   }
@@ -41,18 +61,13 @@ class Action extends React.Component {
 class Options extends React.Component {
   constructor(props) {
     super(props);
-    this.removeAll = this.removeAll.bind(this)
-  }
-
-  removeAll() {
-    console.log(this.props.options)
   }
 
   render() {
     return (
       <div>
         {this.props.options.map((option, index) => <Option key={index} value={option}/>)}
-        <button onClick={this.removeAll}>Remove all</button>
+        <button onClick={this.props.onRemoveAll}>Remove all</button>
       </div>
     );
   }
@@ -67,12 +82,17 @@ class Option extends React.Component {
 }
 
 class AddOption extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
   onSubmit(e) {
     e.preventDefault();
     const option = e.target.elements.option.value.trim();
-    console.log(option)
+    this.props.onAdd(option);
     e.target.elements.option.value = '';
-  }
+  };
 
   render() {
     return (
