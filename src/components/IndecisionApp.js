@@ -6,10 +6,7 @@ import Header from './Header';
 import ErrorMessage from './ErrorMessage';
 
 export default class IndecisionApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {options: props.options};
-  }
+  state = {options: this.props.options};
 
   saveData() {
     const options = this.state.options;

@@ -1,9 +1,6 @@
 import React from 'react';
 
 export default class AddOption extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   onSubmit = (e) => {
     e.preventDefault();
