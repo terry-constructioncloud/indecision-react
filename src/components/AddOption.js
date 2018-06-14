@@ -3,10 +3,9 @@ import React from 'react';
 export default class AddOption extends React.Component {
   constructor(props) {
     super(props);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onSubmit(e) {
+  onSubmit = (e) => {
     e.preventDefault();
     const option = e.target.elements.option.value.trim();
     this.props.handleAdd(option);

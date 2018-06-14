@@ -9,10 +9,6 @@ export default class IndecisionApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {options: props.options};
-    this.handleAdd = this.handleAdd.bind(this);
-    this.handleRemoveAll = this.handleRemoveAll.bind(this);
-    this.handlePick = this.handlePick.bind(this);
-    this.handleRemoveOption = this.handleRemoveOption.bind(this);
   }
 
   saveData() {
@@ -43,30 +39,30 @@ export default class IndecisionApp extends React.Component {
     console.log('unmount');
   }
 
-  handleRemoveAll() {
+  handleRemoveAll = () => {
     this.setState(_ => ({options: []}))
-  }
+  };
 
-  handleAdd(option) {
+  handleAdd = (option) => {
     if (!option) {
       this.setState(() => ({error: 'Enter valid value to add item'}));
     } else {
       this.setState(({options}) => ( {options: options.concat(option), error: ''}));
     }
-  }
+  };
 
-  handleRemoveOption(optionId) {
+  handleRemoveOption = (optionId) => {
     this.setState(prev => {
       const options = prev.options.slice();
       options.splice(optionId, 1)
       return {options};
     });
-  }
+  };
 
-  handlePick() {
+  handlePick = () => {
     const randomNum = Math.floor(Math.random() * this.state.options.length);
     console.log(this.state.options[randomNum]);
-  }
+  };
 
   render() {
     const subTitle = 'test2';
