@@ -1,13 +1,6 @@
-import React from 'react';
 import ReactDom from 'react-dom';
+import React from 'react';
+import IndecisionApp from './components/IndecisionApp';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>test</div>
-    );
-  }
-}
-
-
-ReactDom.render(<App/>, document.getElementById('app'));
+const appRoot = document.getElementById('app');
+ReactDom.render(<IndecisionApp options={['one', 'two']}/>, appRoot);
