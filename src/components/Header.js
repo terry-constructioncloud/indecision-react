@@ -1,9 +1,9 @@
 import React from 'react';
 const Header = props => {
   return (
-    <div>
-      <p>{props.title}</p>
-      {props.subTitle && <p>{props.subTitle}</p>}
+    <div className="header">
+      <h1 className="header__title">{props.title}</h1>
+      {props.subTitle && <h2 className="header__subtitle">{props.subTitle}</h2>}
     </div>
   );
 };
