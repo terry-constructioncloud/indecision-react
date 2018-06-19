@@ -76,13 +76,16 @@ export default class IndecisionApp extends React.Component {
     return (
       <div>
         <Header subTitle={subTitle}/>
-        <Action handlePick={this.handlePick} hasOptions={this.state.options.length > 0}/>
-        <Options options={this.state.options} handleRemoveAll={this.handleRemoveAll}
-                 handleRemoveOption={this.handleRemoveOption}/>
-        <AddOption handleAdd={this.handleAdd}/>
-        <ErrorMessage message={this.state.error}/>
+        <div className="container">
+          <Action handlePick={this.handlePick} hasOptions={this.state.options.length > 0}/>
+          <Options options={this.state.options} handleRemoveAll={this.handleRemoveAll}
+                   handleRemoveOption={this.handleRemoveOption}/>
+          <AddOption handleAdd={this.handleAdd}/>
+          <ErrorMessage message={this.state.error}/>
+        </div>
         <OptionModal handleClearSelectedOption={this.handleClearSelectedOption}
                      selectedOption={this.state.selectedOption}/>
+
       </div>
     );
   }
