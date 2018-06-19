@@ -3,6 +3,7 @@ import Option from './Option';
 const Options = props => {
   return (
     <div>
+      <button className="button button--link" onClick={props.handleRemoveAll}>Remove all</button>
       {
         props.options.map((option, index) => (
             <Option key={index} value={option} id={index}
@@ -10,7 +11,6 @@ const Options = props => {
           )
         )
       }
-      <button onClick={props.handleRemoveAll}>Remove all</button>
     </div>
   );
 };
