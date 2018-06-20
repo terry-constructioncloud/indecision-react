@@ -1,7 +1,7 @@
 import React from 'react';
 const ErrorMessage = (props) => {
   return (
-    props.message ? <p>{props.message}</p> : ''
+    props.message ? <p className="add-option-error">{props.message}</p> : ''
   );
 };
 
